@@ -1,4 +1,5 @@
-![Sushi image by Benjamin Ang and Threadless](http://25.media.tumblr.com/tumblr_lrxx1h20581qzv89bo1_500.jpg)
+![Sushi image by Benjamin Ang and Threadless](http://25.media.tumblr.com/tumblr_lrxx1h20581qzv89bo1_500.jpg)  
+_Illustration credit: Benjamin Ang/Threadless_
 
 pagemaki
 =============
@@ -71,10 +72,10 @@ Would print the following:
 
 Whereas you can also tell pagemaki to "make" a page, too, which parses and then attempts to drop the content into the layout described in the options. So if you had a `layouts/default.html` file like this:
 
-```html
+```underscore
 <html>
   <head>
-    <title>Some title</title>
+    <title><%= page.title || "Untitled" %></title>
   </head>
   <body>
     <%= content %>
@@ -97,7 +98,7 @@ Results:
 ```html
 <html>
   <head>
-    <title>Some title</title>
+    <title>Homepage</title>
   </head>
   <body>
     <h1>My Homepage</h1>
