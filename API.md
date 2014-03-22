@@ -1,6 +1,6 @@
 # Pagemaki API
 
-Mostly, you have a [**constructor**](#constructor), [**parse**](#pagemakiparse) to find options and content, and **make** to compile templates and return the complete HTML pages.
+Mostly, you have a [**constructor**](#constructor) to create individual pagemaki objects with different options, [**parse**](#pagemakiparse) to find options and content, and **make** to compile templates and return the complete HTML pages.
 
 ## Constructor  
 ### `var maki = new Pagemaki(options)`
