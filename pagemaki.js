@@ -122,7 +122,7 @@ Pagemaki.prototype.render = function (err, parsed, callback) {
 
   this.config.templateData.page = parsed;
 
-  callback(null, render(this.config.templateData));
+  callback(null, render(this.config.templateData).trim());
 
 };
 
@@ -147,6 +147,9 @@ Pagemaki.prototype.make = function (string, callback) {
   });
 
 };
+
+
+
 
 
 module.exports = Pagemaki;
