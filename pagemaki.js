@@ -19,9 +19,7 @@ var defaults = {
   contentParse: function (string) {
     return string;
   },
-  getTemplateString: function (name) {
-    return fs.readFileSync(path.join(__dirname, "..", "src", "layouts", name + ".html")).toString();
-  },
+  templatesDir: path.join(process.cwd(), "src", "layouts"),
   templateCompile: function (string) {
     return _.template(string);
   },
@@ -44,6 +42,21 @@ var Pagemaki = function (config) {
 
 
 /**
+ * Find and return the template string to be compiled
+ *
+ * Note: this can be overridden by passing a 'getTemplateString'
+ * function to the Pagemaki constructor, esp for testing
+ * 
+ * @param  {[type]} name [description]
+ * @return {[type]}      [description]
+ */
+Pagemaki.prototype.getTemplateString = function (name) {
+  return fs.readFileSync(path.join(this.config.templatesDir, name + ".html")).toString();
+}
+
+
+
+/**
  * Get a cached template by name, or from disk and then cache for later
  * 
  * @param  {[type]} name [description]
@@ -51,8 +64,10 @@ var Pagemaki = function (config) {
  */
 Pagemaki.prototype.getTemplate = function (name) {
 
+  var getTemplateString = (this.config.getTemplateString || this.getTemplateString).bind(this);
+
   if (!this.templates[name]) {
-    this.templates[name] = this.config.templateCompile(this.config.getTemplateString(name));
+    this.templates[name] = this.config.templateCompile(getTemplateString(name).trim());
   }
 
   return this.templates[name];
