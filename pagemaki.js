@@ -2,6 +2,8 @@ var fs = require("fs");
 var yaml = require("js-yaml");
 var _ = require("underscore");
 var path = require("path");
+var marked = require("marked");
+
 
 
 /** 
