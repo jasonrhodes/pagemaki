@@ -4,12 +4,11 @@ _Illustration credit: Benjamin Ang/Threadless_
 pagemaki
 =============
 
-Very basic static page generation library with a preference for  
-* browserify
-* sass
-* markdown
-* gulp
+Pagemaki is a very basic static page generation library, meant to convert a combination of static content files with meta data (very much like basic Jekyll) and templated layout files into static HTML files that work for GitHub Pages hosting and other static HTML web servers.
 
+_Note: If you use gulp, be sure to checkout the [gulp-pagemaki plugin](https://github.com/jasonrhodes/gulp-pagemaki)_
+
+[Jump right to the method API &raquo;](API.md)
 
 ## More of this shit? Why?
 
@@ -48,10 +47,14 @@ layout: default
 # My Homepage
 ```
 
-Create a new pagemaki and parse this file:
+Create a new pagemaki and parse this file (currently, by default content is unparsed but you can pass in a content parser function to convert Markdown, for instance, as seen below):
 
 ```javascript
-var maker = new Pagemaki();
+var maker = new Pagemaki({
+  contentParse: function (string) {
+    return myFavoriteMarkdownParser.parse(string);
+  }
+});
 
 maker.parse(fs.readFileSync("src/pages/index.html"), function (err, parsed) {
   console.log(parsed);
@@ -86,7 +89,11 @@ Whereas you can also tell pagemaki to "make" a page, too, which parses and then 
 Then when you ran the make function:
 
 ```javascript
-var maker = new Pagemaki();
+var maker = new Pagemaki({
+  contentParse: function (string) {
+    return myFavoriteMarkdownParser.parse(string);
+  }
+});
 
 maker.make(fs.readFileSync("src/pages/index.html"), function (err, made) {
   console.log(made);
@@ -105,3 +112,7 @@ Results:
   </body>
 </html>
 ```
+
+## API
+
+[Visit the method API &raquo;](API.md)
