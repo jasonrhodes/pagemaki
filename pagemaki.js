@@ -4,7 +4,14 @@ var _ = require("underscore");
 var path = require("path");
 var marked = require("marked");
 
-
+marked.setOptions({
+  gfm: true,
+  tables: true,
+  breaks: true,
+  highlight: function (code) {
+    return require('highlight.js').highlightAuto(code).value;
+  }
+})
 
 /** 
  * Defaults object
@@ -17,7 +24,7 @@ var defaults = {
     return yaml.safeLoad(string);
   },
   contentParse: function (string) {
-    return string;
+    return marked(string);
   },
   templatesDir: path.join(process.cwd(), "src", "layouts"),
   templateCompile: function (string) {
