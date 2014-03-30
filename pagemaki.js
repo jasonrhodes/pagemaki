@@ -24,7 +24,7 @@ var defaults = {
     return yaml.safeLoad(string);
   },
   contentParse: function (string, ext) {
-    if (typeof ext === "string" && (ext.toLowerCase() === "markdown" || ext.toLowerCase() === "md") {
+    if (typeof ext === "string" && (ext.toLowerCase() === "markdown" || ext.toLowerCase() === "md")) {
       return marked(string);
     } else {
       return string;
