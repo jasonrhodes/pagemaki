@@ -23,8 +23,12 @@ var defaults = {
   optionsParse: function (string) {
     return yaml.safeLoad(string);
   },
-  contentParse: function (string) {
-    return marked(string);
+  contentParse: function (string, ext) {
+    if (typeof ext === "string" && (ext.toLowerCase() === "markdown" || ext.toLowerCase() === "md") {
+      return marked(string);
+    } else {
+      return string;
+    }
   },
   templatesDir: path.join(process.cwd(), "src", "layouts"),
   templateCompile: function (string) {
