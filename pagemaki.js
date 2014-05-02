@@ -77,6 +77,7 @@ Pagemaki.prototype.getTemplate = function (name) {
 
   var getTemplateString = (this.config.getTemplateString || this.getTemplateString).bind(this);
 
+  // Cache results on first load of this template layout
   if (!this.templates[name]) {
     this.templates[name] = this.config.templateCompile(getTemplateString(name).trim());
   }
