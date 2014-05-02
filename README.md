@@ -1,7 +1,8 @@
+[![Build Status](https://travis-ci.org/jasonrhodes/node-pagemaki.svg?branch=master)](https://travis-ci.org/jasonrhodes/node-pagemaki)
+
 ![Sushi image by Benjamin Ang and Threadless](http://25.media.tumblr.com/tumblr_lrxx1h20581qzv89bo1_500.jpg)  
 _Illustration credit: Benjamin Ang/Threadless_
 
-[![Build Status](https://travis-ci.org/jasonrhodes/node-pagemaki.svg?branch=master)](https://travis-ci.org/jasonrhodes/node-pagemaki)
 
 pagemaki
 =============
