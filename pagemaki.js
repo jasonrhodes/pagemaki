@@ -95,8 +95,13 @@ Pagemaki.prototype.getTemplate = function (name) {
  */
 Pagemaki.prototype.parse = function (input, callback) {
 
+  if (!input) {
+    callback(new Error("input.contents is required"));
+    return;
+  }
+
   if (typeof input.contents !== "string") {
-    callback(new Error("input.contents is a required string"));
+    callback(new Error("input.contents must be a string, instead " + typeof input.contents));
     return;
   }
 
