@@ -1,11 +1,13 @@
 var expect = require("chai").expect;
 var Pagemaki = require("../pagemaki");
 
-var raw = "---\n\
+var raw = {
+	contents: "---\n\
 name: Test Name\n\
 layout: default\n\
 ---\n\
-<h1>Title</h1>";
+<h1>Title</h1>"
+} 
 
 
 describe("pagemaki.parse", function () {

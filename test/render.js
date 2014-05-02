@@ -4,6 +4,7 @@ var Pagemaki = require("../pagemaki");
 describe("pagemaki.render", function () {
 
   var testParsed = {
+    content: "No-op content",
     test: "a test string"
   };
 
@@ -20,6 +21,7 @@ describe("pagemaki.render", function () {
 
     maker.render(null, testParsed, function (err, rendered) {
 
+      expect(err).to.be.null;
       expect(rendered).to.equal("<h1>a test string</h1>");
 
       done();
