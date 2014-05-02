@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 var Pagemaki = require("../pagemaki");
 
-describe("render", function () {
+describe("pagemaki.render", function () {
 
   var testParsed = {
     test: "a test string"
@@ -12,7 +12,7 @@ describe("render", function () {
   };
 
 
-	it("should use underscore templates by default", function (done) {
+	it("should compile underscore-style templates by default", function (done) {
 
     var maker = new Pagemaki({
       getTemplateString: testRenderer

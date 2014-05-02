@@ -8,7 +8,7 @@ layout: default\n\
 <h1>Title</h1>";
 
 
-describe("parse", function () {
+describe("pagemaki.parse", function () {
 
 	var maker = new Pagemaki({});
 
