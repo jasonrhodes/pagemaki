@@ -4,7 +4,7 @@
   "description": "Simple static page generator with a bias towards Sass, Browserify, gulp, and lodash templates.",
   "main": "pagemaki.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter list"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
