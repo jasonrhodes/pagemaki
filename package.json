@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jasonrhodes/node-pagemaki.git"
+    "url": "git://github.com/jasonrhodes/pagemaki.git"
   },
   "keywords": [
     "static",
@@ -20,9 +20,9 @@
   "author": "Jason Rhodes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jasonrhodes/node-pagemaki/issues"
+    "url": "https://github.com/jasonrhodes/pagemaki/issues"
   },
-  "homepage": "https://github.com/jasonrhodes/node-pagemaki",
+  "homepage": "https://github.com/jasonrhodes/pagemaki",
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.18.2"

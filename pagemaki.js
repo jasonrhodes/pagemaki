@@ -46,8 +46,13 @@ var defaults = {
  */
 var Pagemaki = function (config) {
   this.templates = {};
+  this.globals = config.globals || {};
   this.config = _.extend({}, defaults, config);
   this.config.optionsRegex = new RegExp("^" + this.config.optionsDelimiter + "([\\S\\s]+)" + this.config.optionsDelimiter + "([\\S\\s]+)");
+
+  if (!config.globals && config.globalYaml) {
+    this.globals = yaml.safeLoad(config.globalYaml);
+  }
 };
 
 
@@ -112,10 +117,12 @@ Pagemaki.prototype.parse = function (input, callback) {
     data.options = this.config.optionsParse(matches[1]);
     data.content = this.config.contentParse(matches[2].trim(), input.extension);
   } else {
-    data.options = false;
+    data.options = {};
     data.content = this.config.contentParse(input.contents.trim(), input.extension);
   }
 
+  // Merge in global config values to be available in all templates
+  data.options = _.defaults({}, data.options, this.globals);
   callback(null, data);
 
 };
@@ -144,6 +151,7 @@ Pagemaki.prototype.render = function (err, parsed, callback) {
   var layout = (parsed.options && parsed.options.layout) || "default";
   var render = this.getTemplate(layout);
 
+  parsed.content = this.config.templateCompile(parsed.content)(parsed.options);
   this.config.templateData.page = parsed;
 
   callback(null, render(this.config.templateData).trim());
