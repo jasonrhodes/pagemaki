@@ -46,12 +46,14 @@ var defaults = {
  */
 var Pagemaki = function (config) {
   this.templates = {};
-  this.globals = config.globals || {};
   this.config = _.extend({}, defaults, config);
   this.config.optionsRegex = new RegExp("^" + this.config.optionsDelimiter + "([\\S\\s]+)" + this.config.optionsDelimiter + "([\\S\\s]+)");
 
-  if (!config.globals && config.globalYaml) {
-    this.globals = yaml.safeLoad(config.globalYaml);
+  try {
+    // allows for passing globals in as yaml to be parsed
+    this.globals = yaml.safeLoad(config.globals);
+  } catch (error) {
+    this.globals = config.globals || {};
   }
 };
 
