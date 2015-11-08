@@ -45,16 +45,10 @@ var defaults = {
  * @param {[type]} config [description]
  */
 var Pagemaki = function (config) {
+  this.globals = config.globals || {};
   this.templates = {};
   this.config = _.extend({}, defaults, config);
   this.config.optionsRegex = new RegExp("^" + this.config.optionsDelimiter + "([\\S\\s]+)" + this.config.optionsDelimiter + "([\\S\\s]+)");
-
-  try {
-    // allows for passing globals in as yaml to be parsed
-    this.globals = yaml.safeLoad(config.globals);
-  } catch (error) {
-    this.globals = config.globals || {};
-  }
 };
 
 
@@ -155,9 +149,9 @@ Pagemaki.prototype.render = function (err, parsed, callback) {
 
   parsed.content = this.config.templateCompile(parsed.content)(parsed.options);
   this.config.templateData.page = parsed;
+  this.config.templateData.site = parsed.options.site;
 
   callback(null, render(this.config.templateData).trim());
-
 };
 
 
