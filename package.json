@@ -1,6 +1,6 @@
 {
   "name": "pagemaki",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple static page generator with a bias towards Sass, Browserify, gulp, and lodash templates.",
   "main": "pagemaki.js",
   "scripts": {
