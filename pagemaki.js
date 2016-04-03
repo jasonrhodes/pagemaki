@@ -43,7 +43,7 @@ var defaults = {
 var Pagemaki = function (config) {
   this.templates = {};
   this.config = _.extend({}, defaults, config);
-  this.config.optionsRegex = new RegExp("^" + this.config.optionsDelimiter + "([\\S\\s]+)" + this.config.optionsDelimiter + "([\\S\\s]+)");
+  this.config.optionsRegex = new RegExp("^" + this.config.optionsDelimiter + "([\\S\\s]+?)" + this.config.optionsDelimiter + "([\\S\\s]+)");
 };
 
 
