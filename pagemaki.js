@@ -1,6 +1,6 @@
 var fs = require("fs");
 var yaml = require("js-yaml");
-var _ = require("underscore");
+var _ = require("lodash");
 var path = require("path");
 var marked = require("marked");
 
@@ -13,9 +13,9 @@ marked.setOptions({
   }
 })
 
-/** 
+/**
  * Defaults object
- * 
+ *
  */
 var defaults = {
   optionsCheck: true,
@@ -37,7 +37,7 @@ var defaults = {
 
 /**
  * Constructor for the Pagemaki class
- * 
+ *
  * @param {[type]} config [description]
  */
 var Pagemaki = function (config) {
@@ -53,7 +53,7 @@ var Pagemaki = function (config) {
  *
  * Note: this can be overridden by passing a 'getTemplateString'
  * function to the Pagemaki constructor, esp for testing
- * 
+ *
  * @param  {[type]} name [description]
  * @return {[type]}      [description]
  */
@@ -65,7 +65,7 @@ Pagemaki.prototype.getTemplateString = function (name) {
 
 /**
  * Get a cached template by name, or from disk and then cache for later
- * 
+ *
  * @param  {[type]} name [description]
  * @return {[type]}      [description]
  */
@@ -85,7 +85,7 @@ Pagemaki.prototype.getTemplate = function (name) {
 
 /**
  * Parse out the string and look for options, content
- * 
+ *
  * @param  {[type]}   string   [description]
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
@@ -103,7 +103,11 @@ Pagemaki.prototype.parse = function (string, callback) {
     data.content = this.config.contentParse(string.trim());
   }
 
-  callback(null, data);
+  if (typeof callback === 'function') {
+    callback(null, data);
+  }
+
+  return data;
 
 };
 
@@ -111,7 +115,7 @@ Pagemaki.prototype.parse = function (string, callback) {
 
 /**
  * Use the rendering function to create static string
- * 
+ *
  * @param  {[type]}   err      [description]
  * @param  {[type]}   parsed   [description]
  * @param  {Function} callback [description]
@@ -138,7 +142,7 @@ Pagemaki.prototype.render = function (err, parsed, callback) {
 /**
  * Putting it all together using the parsed options, content,
  * and templates to compile static HTML
- * 
+ *
  * @param  {[type]}   string   [description]
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
